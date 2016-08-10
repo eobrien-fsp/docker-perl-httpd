@@ -1,6 +1,6 @@
 FROM ejspr5tr4/perl-base:v20160810
 
-MAINTAINER Eugene O'Brien <e.obrien@sportstg.com>
+MAINTAINER "Eugene O'Brien <e.obrien@sportstg.com>"
 
 RUN apt-get update -y && \
     DEBIAN_FRONTEND=noninteractive \
@@ -10,7 +10,16 @@ RUN apt-get update -y && \
 
 RUN rm -rf /var/lib/apt/lists/*
 
+COPY ["apache2.conf","/etc/apache2/sites-available/000-default.conf"]
+RUN ["a2enmod","headers"]
+
+#Suppress warning about servername. Not really nescessary
+#RUN echo 'ServerName localhost' >> /etc/apache2/apache2.conf
+
+#RUN ["a2dissite","000-default"]
+
 EXPOSE 80
 
-ENTRYPOINT ["/usr/sbin/apache2ctl","-D FOREGROUND"]
+VOLUME ["/var/www/"]
 
+CMD ["/usr/sbin/apache2ctl","-DFOREGROUND"]
