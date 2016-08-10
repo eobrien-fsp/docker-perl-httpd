@@ -10,16 +10,7 @@ RUN apt-get update -y && \
 
 RUN rm -rf /var/lib/apt/lists/*
 
-COPY ["apache2.conf","/etc/apache2/sites-available/000-default.conf"]
-RUN ["a2enmod","headers"]
-
-#Suppress warning about servername. Not really nescessary
-#RUN echo 'ServerName localhost' >> /etc/apache2/apache2.conf
-
-#RUN ["a2dissite","000-default"]
-
 EXPOSE 80
 
-VOLUME ["/var/www/"]
+ENTRYPOINT ["/usr/sbin/apache2ctl","-D FOREGROUND"]
 
-CMD ["/usr/sbin/apache2ctl","-DFOREGROUND"]
