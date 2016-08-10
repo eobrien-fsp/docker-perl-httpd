@@ -1,4 +1,4 @@
-FROM ejspr5tr4/perl-base:latest
+FROM ejspr5tr4/perl-base:v20160810
 
 MAINTAINER Eugene O'Brien <e.obrien@sportstg.com>
 
