@@ -1,4 +1,4 @@
-FROM ejspr5tr4/perl-base:v20160811_2
+FROM ejspr5tr4/perl-base:v20160816
 
 MAINTAINER "Eugene O'Brien <e.obrien@sportstg.com>"
 
